@@ -3,36 +3,36 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import Spinner from "../components/Spinner";
-import { addCar, editCar, getAllCars } from "../redux/actions/carsActions";
+import { editCar, getAllCars } from "../redux/actions/carsActions";
+
 function EditCar({ match }) {
   const { cars } = useSelector((state) => state.carsReducer);
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.alertsReducer);
-  const [car, setcar] = useState();
-  const [totalcars, settotalcars] = useState([]);
+  const [car, setCar] = useState(null);
+
   useEffect(() => {
-    if (cars.length == 0) {
+    if (cars.length === 0) {
       dispatch(getAllCars());
     } else {
-      settotalcars(cars);
-      setcar(cars.find((o) => o._id == match.params.carid));
-      console.log(car);
+      const foundCar = cars.find((o) => o._id === match.params.carid); // use === for strict equality
+      setCar(foundCar);
     }
-  }, [cars]);
+  }, [cars, dispatch, match.params.carid]); // added missing dependencies
 
   function onFinish(values) {
-    values._id = car._id;
-
-    dispatch(editCar(values));
-    console.log(values);
+    if (car) { // Ensure car is not null
+      values._id = car._id;
+      dispatch(editCar(values));
+    }
   }
 
   return (
     <DefaultLayout>
       {loading && <Spinner />}
-      <Row justify="center mt-5">
+      <Row justify="center" className="mt-5">
         <Col lg={12} sm={24} xs={24} className='p-2'>
-          {totalcars.length > 0 && (
+          {car && (
             <Form
               initialValues={car}
               className="bs1 p-2"
@@ -44,42 +44,42 @@ function EditCar({ match }) {
               <hr />
               <Form.Item
                 name="name"
-                label="Car name"
-                rules={[{ required: true }]}
+                label="Car Name"
+                rules={[{ required: true, message: 'Please enter the car name' }]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
                 name="image"
-                label="Image url"
-                rules={[{ required: true }]}
+                label="Image URL"
+                rules={[{ required: true, message: 'Please enter the image URL' }]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
                 name="rentPerHour"
-                label="Rent per hour"
-                rules={[{ required: true }]}
+                label="Rent Per Hour"
+                rules={[{ required: true, message: 'Please enter the rent per hour' }]}
               >
-                <Input />
+                <Input type="number" />
               </Form.Item>
               <Form.Item
                 name="capacity"
                 label="Capacity"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: 'Please enter the capacity' }]}
               >
-                <Input />
+                <Input type="number" />
               </Form.Item>
               <Form.Item
                 name="fuelType"
                 label="Fuel Type"
-                rules={[{ required: true }]}
+                rules={[{ required: true, message: 'Please enter the fuel type' }]}
               >
                 <Input />
               </Form.Item>
 
               <div className="text-right">
-                <button className="btn1">Edit CAR</button>
+                <button type="submit" className="btn1">Edit Car</button>
               </div>
             </Form>
           )}
