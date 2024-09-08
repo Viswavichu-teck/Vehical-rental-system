@@ -8,7 +8,7 @@
     "npm": "7.4.3"
   },
   "scripts": {
-  "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install && npm run build",
     "client-install": "npm install --prefix client",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
@@ -19,8 +19,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "express": "^4.19.2",
-    "mongoose": "^6.0.11",
+    "mongoose": "^6.13.1",
     "nodemon": "^2.0.14",
     "stripe": "^8.184.0",
     "uuid": "^8.3.2"
