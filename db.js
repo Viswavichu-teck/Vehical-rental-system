@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+mongoose.set('strictQuery', false);
 function connectDB(){
 
     mongoose.connect('mongodb+srv://viswa:Vichu1907$$@cluster.wpw72ml.mongodb.net/vichucars' , {useUnifiedTopology: true , useNewUrlParser: true})
