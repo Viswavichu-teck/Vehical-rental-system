@@ -9,7 +9,7 @@ import UserBookings from './pages/UserBookings';
 import AddCar from './pages/AddCar';
 import AdminHome from './pages/AdminHome';
 import EditCar from './pages/EditCar';
-
+import React from 'react';
 function App() {
   return (
     <div className="App">
