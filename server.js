@@ -9,6 +9,11 @@ app.use('/api/users/', require('./routes/usersRoute'));
 app.use('/api/bookings/', require('./routes/bookingsRoute'));
 
 const path = require('path');
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/client/build/index.html'));
+});
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/api/users/register', (req, res) => res.send('Hello World!'));
