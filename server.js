@@ -13,3 +13,9 @@ const path = require('path');
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/api/users/register', (req, res) => res.send('Hello World!'));
 app.listen(port, () => console.log(`Node JS Server Started in Port ${port}`));
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://comfy-duckanoo-4c95de.netlify.app', // Your Netlify URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
