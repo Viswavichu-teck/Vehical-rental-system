@@ -11,7 +11,7 @@ export const carsReducer = (state=initialData , action)=>{
              return{
                  ...state,
                  cars : action.payload
-             }
+             }  
          }
          
          default:return state
