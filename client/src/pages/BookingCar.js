@@ -20,7 +20,6 @@ function BookingCar({ match }) {
   const [to, setTo] = useState();
   const [totalHours, setTotalHours] = useState(0);
   const [driver, setDriver] = useState(false);
-  const [totalAmount, setTotalAmount] = useState(0);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -31,15 +30,6 @@ function BookingCar({ match }) {
     }
   }, [cars, dispatch, match.params.carid]);
 
-  useEffect(() => {
-    // Calculate the total amount
-    let amount = totalHours * car.rentPerHour;
-    if (driver) {
-      amount += 30 * totalHours;
-    }
-    setTotalAmount(amount);
-  }, [driver, totalHours, car.rentPerHour]); // Exclude `totalAmount` from dependencies
-
   const selectTimeSlots = useCallback((values) => {
     setFrom(moment(values[0]).format("MMM DD yyyy HH:mm"));
     setTo(moment(values[1]).format("MMM DD yyyy HH:mm"));
@@ -47,6 +37,8 @@ function BookingCar({ match }) {
   }, []);
 
   const onToken = useCallback((token) => {
+    const totalAmount = (totalHours * car.rentPerHour) + (driver ? 30 * totalHours : 0);
+
     const reqObj = {
       token,
       user: JSON.parse(localStorage.getItem("user"))._id,
@@ -61,7 +53,10 @@ function BookingCar({ match }) {
     };
 
     dispatch(bookCar(reqObj));
-  }, [car, totalHours, totalAmount, driver, from, to, dispatch]);
+  }, [car, totalHours, driver, from, to, dispatch]);
+
+  // Calculate totalAmount on the fly
+  const totalAmount = (totalHours * car.rentPerHour) + (driver ? 30 * totalHours : 0);
 
   return (
     <DefaultLayout>
