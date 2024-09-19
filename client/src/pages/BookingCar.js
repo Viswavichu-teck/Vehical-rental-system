@@ -1,5 +1,5 @@
 import { Col, Row, Divider, DatePicker, Checkbox, Modal } from "antd";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import Spinner from "../components/Spinner";
@@ -7,7 +7,7 @@ import { getAllCars } from "../redux/actions/carsActions";
 import moment from "moment";
 import { bookCar } from "../redux/actions/bookingActions";
 import StripeCheckout from "react-stripe-checkout";
-import 'aos/dist/aos.css'; // You can also use <link> for styles
+import 'aos/dist/aos.css';
 
 const { RangePicker } = DatePicker;
 
@@ -32,20 +32,21 @@ function BookingCar({ match }) {
   }, [cars, dispatch, match.params.carid]);
 
   useEffect(() => {
-    setTotalAmount(totalHours * car.rentPerHour);
+    // Calculate the total amount
+    let amount = totalHours * car.rentPerHour;
     if (driver) {
-      setTotalAmount(totalAmount + 30 * totalHours);
+      amount += 30 * totalHours;
     }
-  }, [driver, totalHours, car.rentPerHour, totalAmount]);
+    setTotalAmount(amount);
+  }, [driver, totalHours, car.rentPerHour]); // Exclude `totalAmount` from dependencies
 
-  function selectTimeSlots(values) {
+  const selectTimeSlots = useCallback((values) => {
     setFrom(moment(values[0]).format("MMM DD yyyy HH:mm"));
     setTo(moment(values[1]).format("MMM DD yyyy HH:mm"));
-
     setTotalHours(values[1].diff(values[0], "hours"));
-  }
+  }, []);
 
-  function onToken(token) {
+  const onToken = useCallback((token) => {
     const reqObj = {
       token,
       user: JSON.parse(localStorage.getItem("user"))._id,
@@ -60,7 +61,7 @@ function BookingCar({ match }) {
     };
 
     dispatch(bookCar(reqObj));
-  }
+  }, [car, totalHours, totalAmount, driver, from, to, dispatch]);
 
   return (
     <DefaultLayout>
