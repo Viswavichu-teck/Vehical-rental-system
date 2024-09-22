@@ -16,8 +16,8 @@ function BookingCar({ match }) {
   const { loading } = useSelector((state) => state.alertsReducer);
   const [car, setCar] = useState({});
   const dispatch = useDispatch();
-  const [from, setFrom] = useState();
-  const [to, setTo] = useState();
+  const [from, setFrom] = useState(null);
+  const [to, setTo] = useState(null);
   const [totalHours, setTotalHours] = useState(0);
   const [driver, setDriver] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -125,9 +125,9 @@ function BookingCar({ match }) {
               <StripeCheckout
                 shippingAddress
                 token={onToken}
-                currency="inr"
+                currency="INR"
                 amount={totalAmount * 100}
-                stripeKey="pk_test_51Pv0KuBZOAhc2fuXADaS1fKxEeTD2FZK8STu5lTezvE6c7byaik4fKqJdKi7K7ASyZQqVVe8xpDSbaTkc0glNQBr00prZyzUAV"
+                stripeKey="pk_test_51Q1j6NRxzx8LaCIqGOL9KhF5wGWQOb2DtxEzy4qFx9077zDgU4Zwcumc7LNit2TVFjMBxfzFEIhxlvIfQQcaEhot00Mjsvy9UJ"
               >
                 <button className="btn1">Book Now</button>
               </StripeCheckout>
@@ -137,7 +137,7 @@ function BookingCar({ match }) {
 
         {car.name && (
           <Modal
-            visible={showModal}
+            open={showModal}
             closable={false}
             footer={false}
             title="Booked Time Slots"
