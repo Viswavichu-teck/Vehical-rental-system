@@ -1,5 +1,13 @@
 # Getting Started with Create React App
 
+
+This is a front end for a online vehical rental system project
+
+you can login and book cars and even a mock payment strip is tied to this project
+
+even people can login as admin and add or remove cars as they wish
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
