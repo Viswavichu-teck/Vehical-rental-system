@@ -85,10 +85,11 @@ function Home() {
               <img src={car.image} alt={car.name} className="carimg" />
 
               <div className="car-content d-flex align-items-center justify-content-between">
-                <div className='text-left pl-2'>
+                <div className='text-left pl-3 justify-content-between'>
                   <p>{car.name}</p>
                   <p> Rent Per Hour {car.rentPerHour} /-</p>
                 </div>
+                
 
                 <div>
                   <button className="btn1 mr-2">

@@ -31,9 +31,19 @@ function BookingCar({ match }) {
   }, [cars, dispatch, match.params.carid]);
 
   const selectTimeSlots = useCallback((values) => {
-    setFrom(moment(values[0]).format("MMM DD yyyy HH:mm"));
-    setTo(moment(values[1]).format("MMM DD yyyy HH:mm"));
-    setTotalHours(values[1].diff(values[0], "hours"));
+    const selectedFrom = moment(values[0]);
+    const selectedTo = moment(values[1]);
+    const currentTime = moment();
+
+    // Prevent booking for past dates
+    if (selectedFrom.isBefore(currentTime)) {
+      alert("You cannot book a car for a past date or time.");
+      return;
+    }
+
+    setFrom(selectedFrom.format("MMM DD yyyy HH:mm"));
+    setTo(selectedTo.format("MMM DD yyyy HH:mm"));
+    setTotalHours(selectedTo.diff(selectedFrom, "hours"));
   }, []);
 
   const onToken = useCallback((token) => {

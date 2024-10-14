@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('./userModel'); // Adjust the path as necessary
+const User = require('../models/userModel'); // Adjust the path as necessary
 
 // Registration Route
 router.post("/register", async (req, res) => {
