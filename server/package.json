@@ -22,11 +22,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
-<<<<<<< HEAD
-    "express": "^4.19.2",
-=======
     "express": "^4.21.1",
->>>>>>> d410ffa (Changed)
     "mongoose": "^6.13.1",
     "nodemon": "^2.0.14",
     "stripe": "^8.184.0",

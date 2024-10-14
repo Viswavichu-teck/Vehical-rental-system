@@ -36,8 +36,6 @@
     transform: rotate(360deg);
   }
 }
-<<<<<<< HEAD
-=======
 .edit-car-container {
   max-width: 400px;
   margin: 20px auto;
@@ -80,4 +78,3 @@ h2 {
 .form-button:hover {
   background-color: #0056b3;
 }
->>>>>>> d410ffa (Changed)

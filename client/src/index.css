@@ -145,9 +145,6 @@ svg{
 }
 a{
   color: orangered !important;
-<<<<<<< HEAD
-}
-=======
 }
 .edit-car-container {
   max-width: 400px;
@@ -191,4 +188,3 @@ h2 {
 .form-button:hover {
   background-color: #0056b3;
 }
->>>>>>> d410ffa (Changed)
