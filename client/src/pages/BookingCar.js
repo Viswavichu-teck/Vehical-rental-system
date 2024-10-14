@@ -94,6 +94,10 @@ function BookingCar({ match }) {
             showTime={{ format: "HH:mm" }}
             format="MMM DD yyyy HH:mm"
             onChange={selectTimeSlots}
+<<<<<<< HEAD
+=======
+            disabledDate={(current) => current && current < moment().startOf("day")}  // Disable past dates
+>>>>>>> d410ffa (Changed)
           />
           <br />
           <button
@@ -153,7 +157,11 @@ function BookingCar({ match }) {
                 <button
                   className="btn1"
                   onClick={() => {
+<<<<<<< HEAD
                     setShowModal(false);
+=======
+                    setShowModal(false);  
+>>>>>>> d410ffa (Changed)
                   }}
                 >
                   CLOSE

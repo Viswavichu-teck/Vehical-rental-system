@@ -2,14 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import DefaultLayout from "../components/DefaultLayout";
 import { deleteCar, getAllCars } from "../redux/actions/carsActions";
+<<<<<<< HEAD
 import { Col, Row, DatePicker } from "antd";
+=======
+import { Col, Row } from "antd";
+>>>>>>> d410ffa (Changed)
 import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Popconfirm } from "antd";
 
+<<<<<<< HEAD
 const { RangePicker } = DatePicker;
 
+=======
+>>>>>>> d410ffa (Changed)
 function AdminHome() {
   const { cars } = useSelector((state) => state.carsReducer);
   const { loading } = useSelector((state) => state.alertsReducer);
@@ -37,12 +44,15 @@ function AdminHome() {
         </Col>
       </Row>
 
+<<<<<<< HEAD
       <Row justify="center" gutter={16} className="mb-4">
         <Col lg={20} sm={24}>
           <RangePicker />
         </Col>
       </Row>
 
+=======
+>>>>>>> d410ffa (Changed)
       {loading && <Spinner />}
 
       <Row justify="center" gutter={16}>
