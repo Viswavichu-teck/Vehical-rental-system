@@ -14,7 +14,6 @@ function connectDB(){
         console.log('Mongo DB Connection Error')
     })
 
-
 }
 
 connectDB()
