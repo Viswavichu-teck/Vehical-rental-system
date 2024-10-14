@@ -37,7 +37,6 @@ function App() {
 
 export default App;
 
-
 export function ProtectedRoute(props)
 {
 
